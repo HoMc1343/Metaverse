@@ -50,5 +50,6 @@ public class MiniGameManager : MonoBehaviour
     {
         // MiniGameUI의 GameOver() 메서드 호출
         FindObjectOfType<MiniGameUI>().GameOver();
+        FindObjectOfType<TimeKeeping>().EndGame();
     }
 }
