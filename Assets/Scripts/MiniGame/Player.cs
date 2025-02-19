@@ -6,6 +6,11 @@ public class Player : MonoBehaviour
 {
     private MiniGameManager miniGameManager;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject); // 씬 전환 시에도 플레이어 오브젝트를 유지
+    }
+    
     private void Start()
     {
         miniGameManager = FindObjectOfType<MiniGameManager>();

@@ -7,7 +7,6 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
-        // 싱글톤 패턴 적용 (씬 전환 시 중복 방지)
         if (instance == null)
         {
             instance = this;
@@ -22,7 +21,7 @@ public class SceneController : MonoBehaviour
     // 특정 씬으로 이동하는 함수
     public void LoadScene(string sceneName)
     {
-        Time.timeScale = 1f; // 시간 정지 해제
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
 
@@ -36,5 +35,18 @@ public class SceneController : MonoBehaviour
     public void LoadMainScene()
     {
         LoadScene("MainScene"); // 메인 씬 이름에 맞게 변경
+    }
+
+    public void OnHostButtonClicked()
+    {
+        // 호스트 관련 로직 처리 후 메인 씬으로 이동
+        LoadMainScene();
+    }
+
+    // 조인 버튼 클릭 시 호출되는 함수
+    public void OnJoinButtonClicked()
+    {
+        // 조인 관련 로직 처리 후 메인 씬으로 이동
+        LoadMainScene();
     }
 }

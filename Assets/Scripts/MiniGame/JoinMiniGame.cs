@@ -21,19 +21,17 @@ public class JoinMiniGame : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             miniGameButton.SetActive(true);
-            if (buttonText != null)
-            {
-                buttonText.text = "Start";  // 버튼 텍스트 변경 (선택 사항)
-            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // 플레이어가 구역을 벗어나면 버튼 비활성화
         if (other.CompareTag("Player"))
         {
-            miniGameButton.SetActive(false);
+            if (miniGameButton != null)  // 삭제되지 않았는지 확인
+            {
+                miniGameButton.SetActive(false);
+            }
         }
     }
 

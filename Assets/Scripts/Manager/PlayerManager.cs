@@ -19,6 +19,11 @@ public class PlayerManager : NetworkBehaviour
     private SpriteRenderer spriteRenderer;
     private AnimationHandler animationHandler;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         if (!IsOwner) Destroy(this); // 본인 캐릭터만 조작 가능

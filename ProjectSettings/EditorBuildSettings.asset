@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BallSpawnerScene.unity
     guid: f1de9a148f25445a38cf17dd5d0f3a7b
+  - enabled: 1
+    path: Assets/Scenes/LogInScene.unity
+    guid: 848a8596aaa164d37b85f36490d33598
   m_configObjects: {}

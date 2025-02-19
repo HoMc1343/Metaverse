@@ -13,6 +13,11 @@ public class RelayUI : MonoBehaviour
     public TMP_InputField joinCodeInput; // Join Code 입력 필드
     public TextMeshProUGUI joinCodeText; // Join Code 표시 텍스트
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);  // RelayUI 오브젝트가 씬 전환 중에도 유지되도록
+    }
+
     void Start()
     {
         hostButton.onClick.AddListener(async () =>
@@ -23,7 +28,7 @@ public class RelayUI : MonoBehaviour
             // Join Code를 표시
             if (joinCodeText != null)
             {
-                joinCodeText.text = "Join Code: " + code; // Join Code 표시
+                joinCodeText.text = "Code: " + code; // Join Code 표시
             }
             else
             {
