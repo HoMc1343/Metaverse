@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,13 @@ public class SceneController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+    public void LoadSceneNetwork(string sceneName)
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
     }
 

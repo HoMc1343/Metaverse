@@ -23,14 +23,18 @@ public class CeilingTransparency : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!gameObject.activeInHierarchy) return; // 비활성화된 경우 실행하지 않음
+
         if (other.CompareTag("Player"))
         {
-            StartFading(0.99f); // 천장을 부드럽게 다시 보이게
+            StartFading(0.99f); 
         }
     }
 
     private void StartFading(float targetAlpha)
     {
+        if (!gameObject.activeInHierarchy) return; // 비활성화된 경우 코루틴 실행하지 않음
+
         if (fadeCoroutine != null)
         {
             StopCoroutine(fadeCoroutine);

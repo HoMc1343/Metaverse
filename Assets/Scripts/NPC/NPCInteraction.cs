@@ -15,6 +15,11 @@ public class NPCInteraction : MonoBehaviour
     private GameObject speechBubble;
     private TextMeshProUGUI speechText;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
