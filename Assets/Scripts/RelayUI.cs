@@ -35,6 +35,9 @@ public class RelayUI : MonoBehaviour
 
             // 조인 버튼도 비활성화
             joinButton.gameObject.SetActive(false);
+
+            // 입력 필드 비활성화
+            joinCodeInput.gameObject.SetActive(false);
         });
 
         joinButton.onClick.AddListener(() =>
@@ -47,6 +50,9 @@ public class RelayUI : MonoBehaviour
 
             // 호스트 버튼도 비활성화
             hostButton.gameObject.SetActive(false);
+
+            // 입력 필드 비활성화
+            joinCodeInput.gameObject.SetActive(false);
         });
     }
 }

@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerManager : NetworkBehaviour
 {
     public float moveSpeed = 5f; // 이동 속도
+    public float sprintSpeed = 8f; // 달리기 속도
     public float jumpForce = 5f; // 점프
+    private float currentSpeed; // 현재 속도
     private Rigidbody2D rb; 
     private Vector2 movement;
     private Camera mainCamera;
@@ -17,6 +19,8 @@ public class PlayerManager : NetworkBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         mainCamera = Camera.main;
+
+        currentSpeed = moveSpeed;
     }
 
     void Update()
@@ -25,6 +29,16 @@ public class PlayerManager : NetworkBehaviour
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        // Shift 키 속도 변경
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = sprintSpeed; // 속도 증가
+        }
+        else
+        {
+            currentSpeed = moveSpeed; // 기본 속도로 복구
+        }
 
         // 좌우 이동 방향에 따라 플레이어 회전
         if (movement.x > 0) // 오른쪽으로 이동

@@ -30,7 +30,7 @@ public class RelayManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError("Error: " + e.Message);
+            // Debug.LogError("Error: " + e.Message);
         }
     }
     public async Task<string> CreateRelay()
