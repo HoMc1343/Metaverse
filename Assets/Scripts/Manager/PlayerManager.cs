@@ -41,13 +41,18 @@ public class PlayerManager : NetworkBehaviour
         }
 
         // 좌우 이동 방향에 따라 플레이어 회전
-        if (movement.x > 0) // 오른쪽으로 이동
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer == null)
         {
-            transform.localRotation = Quaternion.Euler(0, 0, 0); // 오른쪽을 바라봄
+            return;
         }
-        else if (movement.x < 0) // 왼쪽으로 이동
+        if (movement.x > 0)
         {
-            transform.localRotation = Quaternion.Euler(0, 180, 0); // 왼쪽을 바라봄
+            spriteRenderer.flipX = false; // 오른쪽
+        }
+        else if (movement.x < 0)
+        {
+            spriteRenderer.flipX = true; // 왼쪽
         }
     }
 

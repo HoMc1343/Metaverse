@@ -100,42 +100,38 @@ public class NPCInteraction : MonoBehaviour
 
     private void FlipDirection()
     {
-        if (player != null)
+        // 여러 명의 플레이어 찾기
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        GameObject closestPlayer = null;
+        float closestDistance = float.MaxValue; // 초기값을 큰 값으로 설정
+
+        // 모든 플레이어에 대해 가장 가까운 플레이어 찾기
+        foreach (GameObject p in players)
         {
-            // 여러 명의 플레이어 찾기
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            float distanceToPlayer = Vector2.Distance(transform.position, p.transform.position);
 
-            GameObject closestPlayer = null;
-            float closestDistance = float.MaxValue; // 초기값을 큰 값으로 설정
-
-            // 모든 플레이어에 대해 가장 가까운 플레이어 찾기
-            foreach (GameObject p in players)
+            // 범위 내의 플레이어 중 가장 가까운 플레이어를 찾음
+            if (distanceToPlayer <= flipRange && distanceToPlayer < closestDistance)
             {
-                float distanceToPlayer = Vector2.Distance(transform.position, p.transform.position);
-
-                // 범위 내의 플레이어 중 가장 가까운 플레이어를 찾음
-                if (distanceToPlayer <= flipRange && distanceToPlayer < closestDistance)
-                {
-                    closestDistance = distanceToPlayer;
-                    closestPlayer = p;
-                }
+                closestDistance = distanceToPlayer;
+                closestPlayer = p;
             }
+        }
 
-            if (closestPlayer != null)
+        // 가장 가까운 플레이어의 위치에 따라 NPC 방향 전환
+        if (closestPlayer != null)
+        {
+            SpriteRenderer npcSpriteRenderer = GetComponentInChildren<SpriteRenderer>(); // NPC의 SpriteRenderer
+
+            // NPC가 플레이어의 위치보다 왼쪽에 있으면 좌우 바뀜
+            if (transform.position.x > closestPlayer.transform.position.x)
             {
-                // 가장 가까운 플레이어의 위치에 따라 방향 전환
-                bool isPlayerOnLeft = closestPlayer.transform.position.x < transform.position.x;
-
-                // 플레이어가 왼쪽에 있을 때
-                if (isPlayerOnLeft && transform.localScale.x > 0)
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
-                }
-                // 플레이어가 오른쪽에 있을 때
-                else if (!isPlayerOnLeft && transform.localScale.x < 0)
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
-                }
+                npcSpriteRenderer.flipX = true; // 왼쪽
+            }
+            else
+            {
+                npcSpriteRenderer.flipX = false; // 오른쪽
             }
         }
     }
