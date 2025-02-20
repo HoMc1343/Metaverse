@@ -43,10 +43,4 @@ public class MiniGameManager : MonoBehaviour
     {
         SceneManager.LoadScene(mainSceneName);  // 원래 씬으로 돌아가기
     }
-    public void GameOver()
-    {
-        // MiniGameUI의 GameOver() 메서드 호출
-        FindObjectOfType<MiniGameUI>().GameOver();
-        FindObjectOfType<TimeKeeping>().EndGame();
-    }
 }

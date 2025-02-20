@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Ball")) // 공에 닿았을 때
         {
-            miniGameManager.GameOver(); // 게임 종료
-            gameObject.SetActive(false); // 플레이어 숨기기
+            FindObjectOfType<MiniGameUI>().GameOver();
+            FindObjectOfType<TimeKeeping>().EndGame();
         }
     }
 }

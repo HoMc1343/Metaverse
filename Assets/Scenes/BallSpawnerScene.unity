@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 1001182166}
   bestTimeText: {fileID: 310496494}
-  inventory: {fileID: 1458614053}
+  inventory: {fileID: 0}
 --- !u!114 &1458614049
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,11 +11,6 @@ public class TimeKeeping : MonoBehaviour
 
     public Inventory inventory;
 
-    void Start()
-    {
-        inventory = Inventory.instance; // Inventory의 싱글톤 인스턴스를 가져옴
-    }
-
     void Update()
     {
         if (isGameActive)
@@ -32,9 +27,9 @@ public class TimeKeeping : MonoBehaviour
 
         int earnedGold = Mathf.FloorToInt(elapsedTime);
 
-        if (inventory != null)
+        if (Inventory.instance != null)
         {
-            inventory.AddGold(earnedGold);
+            Inventory.instance.AddGold(earnedGold);
             Debug.Log("미니게임 종료! 획득한 골드: " + earnedGold);
         }
         else
