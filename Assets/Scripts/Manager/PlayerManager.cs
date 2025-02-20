@@ -102,7 +102,7 @@ public class PlayerManager : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            inventory.ShowInventory(); // I 키로 인벤토리 확인
+            inventory.GetComponentInChildren<InventoryUI>();
         }
     }
 

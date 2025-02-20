@@ -5,11 +5,21 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public List<string> inventory = new List<string>();
+    private InventoryUI inventoryUI;
+
+    private void Start()
+    {
+        if (!inventoryUI)
+        {
+            inventoryUI = GetComponentInChildren<InventoryUI>();
+        }
+    }
 
     public void AddItem(string itemName)
     {
         inventory.Add(itemName);
         Debug.Log($"아이템 획득: {itemName}");
+        inventoryUI.UpdateInventoryUI();
     }
 
     public void RemoveItem(string itemName)
@@ -17,25 +27,17 @@ public class Inventory : MonoBehaviour
         if (inventory.Contains(itemName))
         {
             inventory.Remove(itemName);
-            Debug.Log($"아이템 사용 또는 삭제: {itemName}");
+            Debug.Log($"아이템 사용: {itemName}");
+            inventoryUI.UpdateInventoryUI(); 
         }
         else
         {
-            Debug.Log($"인벤토리에 {itemName}이(가) 없습니다.");
+            Debug.Log($"{itemName}이(가) 인벤토리에 없습니다.");
         }
     }
 
     public bool HasItem(string itemName)
     {
         return inventory.Contains(itemName);
-    }
-
-    public void ShowInventory()
-    {
-        Debug.Log("=== 인벤토리 ===");
-        foreach (string item in inventory)
-        {
-            Debug.Log(item);
-        }
     }
 }
