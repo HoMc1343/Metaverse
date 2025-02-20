@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 using TMPro;
 
 public class RelayUI : MonoBehaviour
@@ -36,21 +35,6 @@ public class RelayUI : MonoBehaviour
 
             // 조인 버튼도 비활성화
             joinButton.gameObject.SetActive(false);
-
-            // 입력 필드 비활성화
-            joinCodeInput.gameObject.SetActive(false);
-        });
-
-        joinButton.onClick.AddListener(() =>
-        {
-            // Relay에 참여 (조인 역할)
-            relayManager.JoinRelay(joinCodeInput.text);
-
-            // 조인 버튼 비활성화 (사라지게)
-            joinButton.gameObject.SetActive(false);
-
-            // 호스트 버튼도 비활성화
-            hostButton.gameObject.SetActive(false);
 
             // 입력 필드 비활성화
             joinCodeInput.gameObject.SetActive(false);
