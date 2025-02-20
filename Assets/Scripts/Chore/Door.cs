@@ -6,47 +6,59 @@ public class Door : MonoBehaviour
 {
     public Sprite openDoorSprite;
     public Sprite closedDoorSprite;
+
     private SpriteRenderer spriteRenderer;
     private bool isOpen = false;
     private bool isPlayerNearby = false;
 
+    private BoxCollider2D collisionCollider; // 플레이어 충돌 방지용
+    private BoxCollider2D triggerCollider;   // 플레이어 감지용 (Trigger)
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // 2개의 BoxCollider2D 가져오기
+        BoxCollider2D[] colliders = GetComponents<BoxCollider2D>();
+        if (colliders.Length >= 2)
+        {
+            collisionCollider = colliders[0]; // 충돌 방지용
+            triggerCollider = colliders[1];   // 감지용
+            triggerCollider.isTrigger = true; // 감지용 Collider는 Trigger 설정
+        }
+
         spriteRenderer.sprite = closedDoorSprite;
+        collisionCollider.enabled = true; // 문이 닫혀있으므로 충돌 활성화
     }
 
     void Update()
     {
-        // 플레이어가 근처에 있고 'E' 키를 눌렀을 때 문 열고 닫기
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             if (isOpen)
             {
-                CloseDoor();  // 문이 열려있으면 닫기
+                CloseDoor();
             }
             else
             {
-                OpenDoor();  // 문이 닫혀있으면 열기
+                OpenDoor();
             }
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 플레이어가 문에 근접했을 때
         if (other.CompareTag("Player"))
         {
-            isPlayerNearby = true;  // 플레이어가 문 근처에 있다고 표시
+            isPlayerNearby = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        // 플레이어가 문을 떠났을 때
         if (other.CompareTag("Player"))
         {
-            isPlayerNearby = false;  // 플레이어가 문을 떠났다고 표시
+            isPlayerNearby = false;
         }
     }
 
@@ -54,8 +66,9 @@ public class Door : MonoBehaviour
     {
         if (!isOpen)
         {
-            spriteRenderer.sprite = openDoorSprite;  // 열린 문 이미지로 변경
+            spriteRenderer.sprite = openDoorSprite;
             isOpen = true;
+            collisionCollider.enabled = false; // 충돌 비활성화 (플레이어 통과 가능)
         }
     }
 
@@ -63,8 +76,9 @@ public class Door : MonoBehaviour
     {
         if (isOpen)
         {
-            spriteRenderer.sprite = closedDoorSprite;  // 닫힌 문 이미지로 변경
+            spriteRenderer.sprite = closedDoorSprite;
             isOpen = false;
+            collisionCollider.enabled = true; // 충돌 활성화 (플레이어 통과 불가능)
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : NetworkBehaviour
 {
+    public static PlayerManager Instance { get; private set; }
     public float moveSpeed = 5f; 
     public float sprintSpeed = 8f; 
     private float currentSpeed; 
@@ -19,10 +20,20 @@ public class PlayerManager : NetworkBehaviour
     private Camera mainCamera;
     private SpriteRenderer spriteRenderer;
     private AnimationHandler animationHandler;
+    private Inventory inventory;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); // 중복된 PlayerManager 제거
+            return;
+        }
     }
 
     void Start()
@@ -38,6 +49,8 @@ public class PlayerManager : NetworkBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         currentSpeed = moveSpeed;
+
+        inventory = GetComponent<Inventory>();
         
         // 현재 씬이 바뀌면 플레이어 활성화/비활성화 처리
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -85,6 +98,11 @@ public class PlayerManager : NetworkBehaviour
         else if (movement.x < 0)
         {
             spriteRenderer.flipX = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventory.ShowInventory(); // I 키로 인벤토리 확인
         }
     }
 
