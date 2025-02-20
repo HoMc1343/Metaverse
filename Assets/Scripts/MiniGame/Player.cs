@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private MiniGameManager miniGameManager;
-
     
     private void Start()
     {
