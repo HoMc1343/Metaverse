@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : NetworkBehaviour
 {
     public static PlayerManager Instance { get; private set; }
+    
     public float moveSpeed = 5f; 
     public float sprintSpeed = 8f; 
     private float currentSpeed; 
