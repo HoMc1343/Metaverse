@@ -30,10 +30,6 @@ public class RelayUI : MonoBehaviour
             {
                 joinCodeText.text = "Code: " + code; // Join Code 표시
             }
-            else
-            {
-                Debug.LogError("JoinCodeText가 할당되지 않았습니다");
-            }
 
             // 호스트 버튼 비활성화 (사라지게)
             hostButton.gameObject.SetActive(false);

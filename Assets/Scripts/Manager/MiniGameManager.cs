@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class MiniGameManager : MonoBehaviour
 {
     public GameObject miniGameUI;  // 미니게임 시작/나가기 버튼을 위한 UI
-    public GameObject player;  // 플레이어 오브젝트
     public string mainSceneName = "MainScene";  // 원래 씬 이름
 
     private bool isInMiniGame = false;
@@ -33,7 +32,6 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
-    // 시작 버튼 클릭 시 미니게임 시작
     public void StartMiniGame()
     {
         isInMiniGame = true;
@@ -41,7 +39,6 @@ public class MiniGameManager : MonoBehaviour
         SceneManager.LoadScene("MiniGameScene");  // 미니게임 씬으로 전환
     }
 
-    // 나가기 버튼 클릭 시 원래 씬으로 돌아가기
     public void ExitMiniGame()
     {
         SceneManager.LoadScene(mainSceneName);  // 원래 씬으로 돌아가기

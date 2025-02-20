@@ -1149,7 +1149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGameUI: {fileID: 1355842857}
-  player: {fileID: 369213375}
   mainSceneName: MainScene
 --- !u!4 &1180006768
 Transform:
@@ -1464,6 +1463,7 @@ GameObject:
   - component: {fileID: 1458614051}
   - component: {fileID: 1458614050}
   - component: {fileID: 1458614049}
+  - component: {fileID: 1458614053}
   - component: {fileID: 1458614048}
   m_Layer: 5
   m_Name: TimeKeeping
@@ -1486,6 +1486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 1001182166}
   bestTimeText: {fileID: 310496494}
+  inventory: {fileID: 1458614053}
 --- !u!114 &1458614049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,6 +1571,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1458614053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458614047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6b04e64c101401b9b2808bb975af17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory:
+  - 
+  gold: 0
 --- !u!1 &1713640276
 GameObject:
   m_ObjectHideFlags: 0

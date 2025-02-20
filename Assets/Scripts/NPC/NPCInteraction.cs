@@ -36,10 +36,6 @@ public class NPCInteraction : MonoBehaviour
             speechText = speechBubble.GetComponentInChildren<TextMeshProUGUI>();
             speechBubble.SetActive(false);
         }
-        else
-        {
-            Debug.LogError($"{gameObject.name}: SpeechBubble을 찾을 수 없습니다! Canvas 구조를 확인하세요.");
-        }
     }
 
     void Update()

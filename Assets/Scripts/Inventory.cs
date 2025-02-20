@@ -5,9 +5,23 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public List<string> inventory = new List<string>();
+    public static Inventory instance;
     private InventoryUI inventoryUI;
 
     public int gold = 0;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 변경 시 삭제되지 않음
+        }
+        else
+        {
+            Destroy(gameObject); // 중복 방지
+        }
+    }
 
     private void Start()
     {
@@ -35,12 +49,7 @@ public class Inventory : MonoBehaviour
         if (inventory.Contains(itemName))
         {
             inventory.Remove(itemName);
-            Debug.Log($"아이템 사용: {itemName}");
             inventoryUI.UpdateInventoryUI(); 
-        }
-        else
-        {
-            Debug.Log($"{itemName}이(가) 인벤토리에 없습니다.");
         }
     }
 

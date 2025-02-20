@@ -11,6 +11,21 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI goldText; // 보유 골드
     private Inventory inventory; // 인벤토리 데이터
 
+    public static InventoryUI instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         inventory = GetComponentInParent<Inventory>(); // 부모(Player)에서 Inventory 가져오기

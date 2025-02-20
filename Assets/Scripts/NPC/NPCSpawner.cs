@@ -18,7 +18,6 @@ public class NPCSpawner : MonoBehaviour
 
         if (npcPrefabs.Length == 0 || spawnPoints.Length == 0)
         {
-            Debug.LogError("NPCSpawner: NPC 프리팹 또는 스폰 포인트가 설정되지 않았습니다!");
             return;
         }
 

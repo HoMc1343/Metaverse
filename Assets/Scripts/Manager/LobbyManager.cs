@@ -11,12 +11,10 @@ public class LobbyManager : MonoBehaviour
     {
         CreateLobbyOptions options = new CreateLobbyOptions { IsPrivate = false };
         currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, options);
-        Debug.Log("Lobby Created: " + currentLobby.Id);
     }
 
     public async void JoinLobby(string lobbyId)
     {
         currentLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobbyId);
-        Debug.Log("Joined Lobby: " + currentLobby.Id);
     }
 }
